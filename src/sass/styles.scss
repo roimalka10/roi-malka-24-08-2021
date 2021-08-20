@@ -1,0 +1,20 @@
+@import "./components/navbar";
+
+@font-face {
+  font-family: "segoe UI";
+  src: url("../fonts/Segoe\ UI.ttf");
+}
+
+html {
+  font-family: "segoe UI";
+  font-size: 10px;
+  scroll-behavior: smooth;
+  background-color: rgb(31, 139, 240);
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: white;
+  text-decoration: none;
+}
