@@ -1,0 +1,29 @@
+.favouriteHome {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 50px;
+  @media screen and (max-width: 700px) {
+    flex-direction: column;
+  }
+}
+
+.favouriteDetails {
+  cursor: pointer;
+  margin: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 3rem;
+  width: 250px;
+  height: 280px;
+  border-radius: 0.3rem;
+  border: 3px solid rgb(30, 86, 131);
+  color: white;
+  background-color: rgb(43, 122, 187);
+  .favIcon {
+    margin: 8px 8px;
+    align-self: flex-end;
+  }
+}

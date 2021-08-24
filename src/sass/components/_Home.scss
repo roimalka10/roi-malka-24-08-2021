@@ -29,9 +29,6 @@ body {
     &::placeholder {
       color: rgb(68, 68, 68);
     }
-    &:focus-visible {
-      background-color: rgb(255, 255, 255);
-    }
   }
   .searchIcon {
     display: grid;

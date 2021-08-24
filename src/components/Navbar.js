@@ -12,7 +12,7 @@ const Navbar = () => {
       <div className="navbar">
         <a href="/">Herolo Weather App</a>
         <div className={showMenu ? "navbar-items active" : "navbar-items"}>
-          <NavLink activeClassName="activated" to="/">
+          <NavLink to="/">
             <span>Home</span>
           </NavLink>
           <NavLink activeClassName="activated" to="/favourites">

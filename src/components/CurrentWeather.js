@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import NextWeek from "../NextWeek/NextWeek";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import NextWeek from "./NextWeek";
 const axios = require("axios");
 
 const CurrentWeather = (props) => {
@@ -10,7 +11,7 @@ const CurrentWeather = (props) => {
   useEffect(() => {
     axios
       .get(
-        `http://dataservice.accuweather.com/currentconditions/v1/${props.cityKey}?apikey=sEvHurTb69R14XzxsOmHKkTLkMziVO3S`
+        `https://dataservice.accuweather.com/currentconditions/v1/${props.cityKey}?apikey=sEvHurTb69R14XzxsOmHKkTLkMziVO3S`
       )
       .then(function (response) {
         // handle success
@@ -30,7 +31,7 @@ const CurrentWeather = (props) => {
   const getWeeklyForcast = () => {
     axios
       .get(
-        `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${props.cityKey}?apikey=sEvHurTb69R14XzxsOmHKkTLkMziVO3S&metric=${isMetric}`
+        `https://dataservice.accuweather.com/forecasts/v1/daily/5day/${props.cityKey}?apikey=sEvHurTb69R14XzxsOmHKkTLkMziVO3S&metric=${isMetric}`
       )
       .then(function (response) {
         // handle success
@@ -53,8 +54,10 @@ const CurrentWeather = (props) => {
   return (
     <>
       {cityWeather != null ? (
-        <div>
+        <div className="weatherMain">
           <div className="details">
+            <button className="favourite">Add to favourites</button>
+            <AiOutlineHeart size={30} />
             <div>{props.cityName}</div>
             <div>
               {isMetric

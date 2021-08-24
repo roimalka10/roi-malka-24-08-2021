@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
-import CurrentWeather from "../CurrentWeather/CurrentWeather";
+import CurrentWeather from "./CurrentWeather";
 const axios = require("axios");
 
 const Home = () => {
@@ -9,12 +9,11 @@ const Home = () => {
 
   useEffect(() => {
     if (input != null) {
-      console.log("Input changed");
       console.log(input);
       //setCities(mockData);
       axios
         .get(
-          `http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=sEvHurTb69R14XzxsOmHKkTLkMziVO3S&q=${input}`
+          `https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=sEvHurTb69R14XzxsOmHKkTLkMziVO3S&q=${input}`
         )
         .then(function (response) {
           // handle success
@@ -46,7 +45,6 @@ const Home = () => {
             <AiOutlineSearch size={28} />
           </div>
         </div>
-        <button className="favourite">Add to favourites</button>
       </div>
       <div className="forecastDetails">
         {cities.length > 0 ? (
