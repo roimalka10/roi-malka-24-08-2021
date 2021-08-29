@@ -1,16 +1,65 @@
+.newWeek {
+  .loading {
+    margin: 0 auto;
+  }
+  @media screen and (min-width: 800px) {
+    display: flex;
+    flex-direction: row;
+  }
+}
+
 .nextWeek {
   display: flex;
-  padding: 10px 20px;
   justify-content: space-between;
   align-items: center;
   font-size: 1.7rem;
-  height: 60px;
-  border-bottom: 1px solid rgb(199, 199, 199);
+  height: 62px;
   width: 100%;
   background: rgba(255, 255, 255, 0.2);
   color: rgb(68, 68, 68);
+  &:not(:last-child) {
+    border-bottom: 1px solid #1f5988;
+  }
+
+  @media screen and (min-width: 800px) {
+    height: 275px;
+    justify-content: center;
+    margin-top: 38px;
+    font-size: 2.2rem;
+    &:not(:last-child) {
+      border-right: 1px solid #1f5988;
+      border-bottom: none;
+    }
+  }
+
+  .dayOfWeek {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    div {
+      width: 150px;
+    }
+
+    @media screen and (min-width: 800px) {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      align-items: center;
+      justify-content: space-evenly;
+      div {
+        height: 50px;
+      }
+    }
+  }
+
   #day {
     color: black;
     font-weight: 700;
+  }
+  &:hover {
+    border: 2px solid white;
   }
 }

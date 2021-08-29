@@ -1,38 +1,44 @@
 .weatherMain {
-  border: 2px solid black;
-}
-
-.newWeek {
-  width: 600px;
-  @media screen and (max-width: 900px) {
-    width: 400px;
-  }
+  margin: 0 auto;
+  width: 80%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  height: 71vh;
+  border-radius: 0.1rem;
 }
 
 .details {
-  padding-bottom: 40px;
-  padding-top: 40px;
-  width: 600px;
-  height: 250px;
-  border-radius: 0.3rem;
-  :nth-child(3) {
-    font-size: 5rem;
-  }
-  @media screen and (max-width: 900px) {
-    width: 400px;
+  max-width: 400px;
+  position: relative;
+  margin: 31px auto;
+  .cityDetails {
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    :nth-child(2) {
+      font-size: 8rem;
+    }
   }
 }
 
-.changeUnits {
-  background-color: rgba(255, 255, 255, 0.6);
-  font-size: 1.7rem;
-  padding: 10px;
-  background-color: rgb(43, 122, 187);
-  border: none;
-  border-radius: 0.3rem;
-  color: white;
+.favIcon {
+  right: 15px;
+  top: 10px;
+  position: absolute;
   cursor: pointer;
-  &:hover {
-    background-color: rgb(31, 88, 134);
-  }
 }
+
+// .changeUnits {
+//   background-color: rgba(255, 255, 255, 0.6);
+//   font-size: 1.7rem;
+//   padding: 10px;
+//   background-color: rgb(43, 122, 187);
+//   border: none;
+//   border-radius: 0.3rem;
+//   color: white;
+//   cursor: pointer;
+//   &:hover {
+//     background-color: rgb(31, 88, 134);
+//   }
+// }

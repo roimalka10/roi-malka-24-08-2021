@@ -3,10 +3,9 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
-  margin: 50px;
-  @media screen and (max-width: 700px) {
-    flex-direction: column;
-  }
+  flex-wrap: wrap;
+  max-width: 1312px;
+  margin: 50px auto;
 }
 
 .favouriteDetails {
@@ -15,15 +14,33 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 3rem;
-  width: 250px;
-  height: 280px;
-  border-radius: 0.3rem;
-  border: 3px solid rgb(30, 86, 131);
+  font-size: 4rem;
+  width: 400px;
+  height: 265px;
+  border-radius: 0.1rem;
   color: white;
-  background-color: rgb(43, 122, 187);
-  .favIcon {
-    margin: 8px 8px;
-    align-self: flex-end;
+  background-color: #2b7abb;
+  border: 1px solid #1f5988;
+
+  .favouriteIcon {
+    margin-top: 15px;
   }
+
+  &:hover {
+    background-color: #1f5988;
+    border: 1px solid white;
+  }
+
+  .favourite {
+    display: flex;
+    flex-direction: column;
+    font-size: 3rem;
+    height: 200px;
+    justify-content: space-evenly;
+  }
+}
+
+.noFavourite {
+  margin-top: 50px;
+  font-size: 3rem;
 }

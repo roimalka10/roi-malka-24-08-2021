@@ -1,57 +1,48 @@
 body {
   text-align: center;
+  background-image: url("/./images/sky.jpg");
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: 100%;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 .home {
-  max-width: 600px;
   margin: 0 auto;
 }
 
 .searchArea {
   display: flex;
-  margin: 40px 15px;
-  flex-direction: column-reverse;
-  justify-content: space-between;
+  margin: 20px 15px;
+  flex-direction: row-reverse;
+  justify-content: center;
   align-items: center;
 }
 
 .searchInfo {
   display: flex;
+  position: relative;
   input {
     font-size: 2rem;
     outline: none;
-    background-color: rgb(224, 224, 224);
-    border: 1px solid rgb(224, 224, 224);
     border-bottom: 2px solid rgb(43, 122, 187);
     padding: 1rem 3.5rem 1rem 1rem;
     width: 350px;
-    color: black;
+    background-color: rgb(43, 122, 187) !important;
+    border: none;
     &::placeholder {
-      color: rgb(68, 68, 68);
+      color: white;
     }
   }
   .searchIcon {
     display: grid;
-    place-items: center;
-    position: relative;
-    right: 40px;
+    position: absolute;
+    right: 10px;
+    top: 6px;
     cursor: pointer;
     color: rgb(68, 68, 68);
   }
-}
-
-.favourite {
-  font-size: 1.7rem;
-  padding: 10px;
-  background-color: rgb(43, 122, 187);
-  border: none;
-  border-radius: 0.3rem;
-  color: white;
-  cursor: pointer;
-  &:hover {
-    background-color: rgb(31, 88, 134);
-  }
-  margin-bottom: 40px;
 }
 
 .forecastDetails {
@@ -59,6 +50,7 @@ body {
   flex-direction: column;
   align-content: space-between;
   align-items: center;
+  margin: 0 auto;
   font-size: 3rem;
   color: rgb(68, 68, 68);
 }
