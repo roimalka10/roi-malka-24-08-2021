@@ -17,9 +17,11 @@ const NextWeek = (props) => {
 
   return (
     <div className="nextWeek">
-      <div id="day">{convert(props.date)}</div>
-      <div>{props.forecast}</div>
-      <div>{props.temp}</div>
+      <div className="dayOfWeek">
+        <div id="day">{convert(props.date)}</div>
+        <div>{props.temp}</div>
+        <div>{props.forecast}</div>
+      </div>
     </div>
   );
 };
