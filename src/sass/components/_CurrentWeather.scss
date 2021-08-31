@@ -1,7 +1,6 @@
 .weatherMain {
   margin: 0 auto;
   width: 80%;
-  margin-top: 20px;
   margin-bottom: 20px;
   height: 71vh;
   border-radius: 0.1rem;
@@ -10,7 +9,7 @@
 .details {
   max-width: 400px;
   position: relative;
-  margin: 31px auto;
+  margin: 20px auto;
   .cityDetails {
     height: 280px;
     display: flex;
@@ -28,17 +27,3 @@
   position: absolute;
   cursor: pointer;
 }
-
-// .changeUnits {
-//   background-color: rgba(255, 255, 255, 0.6);
-//   font-size: 1.7rem;
-//   padding: 10px;
-//   background-color: rgb(43, 122, 187);
-//   border: none;
-//   border-radius: 0.3rem;
-//   color: white;
-//   cursor: pointer;
-//   &:hover {
-//     background-color: rgb(31, 88, 134);
-//   }
-// }

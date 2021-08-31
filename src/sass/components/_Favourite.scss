@@ -9,7 +9,6 @@
 }
 
 .favouriteDetails {
-  cursor: pointer;
   margin: 30px 20px;
   display: flex;
   flex-direction: column;
@@ -21,9 +20,11 @@
   color: white;
   background-color: #2b7abb;
   border: 1px solid #1f5988;
+  z-index: 5;
 
   .favouriteIcon {
     margin-top: 15px;
+    z-index: 100;
   }
 
   &:hover {
@@ -37,6 +38,7 @@
     font-size: 3rem;
     height: 200px;
     justify-content: space-evenly;
+    z-index: 10;
   }
 }
 
