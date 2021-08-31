@@ -1,13 +1,21 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
+import { WiCelsius, WiFahrenheit } from "react-icons/wi";
 import { motion } from "framer-motion";
+import { useDispatch, useSelector } from "react-redux";
+import { change } from "../store/isMetric";
 
 const Navbar = () => {
+  const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
+  const isMetric = useSelector((state) => state.isMetric);
+  const [degree, setDegree] = useState(isMetric);
+
   const handleClick = () => {
     setShowMenu(!showMenu);
   };
+
   return (
     <>
       <motion.div
@@ -16,8 +24,28 @@ const Navbar = () => {
         animate={{ y: 0 }}
         transition={{ duration: 0.1, type: "tween" }}
       >
-        <a href="/">Herolo Weather App</a>
+        <a className="appName" href="/">
+          Herolo Weather App
+        </a>
+        <div
+          className="changeUnits2"
+          onClick={() => {
+            dispatch(change());
+            setDegree((prevState) => !prevState);
+          }}
+        >
+          {degree ? <WiCelsius /> : <WiFahrenheit />}
+        </div>
         <div className={showMenu ? "navbar-items active" : "navbar-items"}>
+          <div
+            className="changeUnits"
+            onClick={() => {
+              dispatch(change());
+              setDegree((prevState) => !prevState);
+            }}
+          >
+            {degree ? <WiCelsius /> : <WiFahrenheit />}
+          </div>
           <NavLink onClick={handleClick} to="/">
             <span>Home</span>
           </NavLink>
