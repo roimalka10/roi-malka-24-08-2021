@@ -55,6 +55,19 @@
   align-items: center;
   height: 70px;
 
+  .changeText {
+    font-size: 1.6rem;
+    @media screen and (max-width: 955px) {
+      display: none;
+    }
+  }
+  .arrow {
+    margin: 2px -10px 0 2px;
+    @media screen and (max-width: 955px) {
+      display: none;
+    }
+  }
+
   .changeUnits {
     cursor: pointer;
     position: relative;

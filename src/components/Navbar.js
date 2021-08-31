@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { WiCelsius, WiFahrenheit } from "react-icons/wi";
+import { BsArrowRightShort } from "react-icons/bs";
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { change } from "../store/isMetric";
@@ -37,6 +38,8 @@ const Navbar = () => {
           {degree ? <WiCelsius /> : <WiFahrenheit />}
         </div>
         <div className={showMenu ? "navbar-items active" : "navbar-items"}>
+          <span className="changeText">change units</span>
+          <BsArrowRightShort className="arrow" />
           <div
             className="changeUnits"
             onClick={() => {

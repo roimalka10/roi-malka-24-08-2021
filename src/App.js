@@ -10,10 +10,13 @@ const App = () => {
       <Router>
         <Navbar />
         <Switch>
+          <Route exact path="/city/:cityKey">
+            <Home />
+          </Route>
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/favourites">
+          <Route exact path="/favourites">
             <Favourites />
           </Route>
         </Switch>

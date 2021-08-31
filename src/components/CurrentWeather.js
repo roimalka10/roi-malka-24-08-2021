@@ -7,12 +7,13 @@ import { create, remove } from "../store/favourites";
 import { motion } from "framer-motion";
 
 const CurrentWeather = (props) => {
+  const isMetric = useSelector((state) => state.isMetric);
   const [cityWeather, setCityWeather] = useState(null);
-  const [isMetric, setIsMetric] = useState(true);
-  const [weeklyWeather, setWeeklyWeather] = useState(null);
   const [showFavourite, setShowFavourite] = useState(false);
   const favourites = useSelector((state) => state.favourites);
   const dispatch = useDispatch();
+
+  const [isError, setIsError] = useState(false);
 
   const HandleClick = () => {
     const isFavour = favourites.find((fav) => fav.Key == props.cityKey);
@@ -22,7 +23,7 @@ const CurrentWeather = (props) => {
       dispatch(
         create({
           Key: props.cityKey,
-          Name: props.cityName,
+          Name: props.cityName, // we pass this data to save with http requests
         })
       );
     }
@@ -35,146 +36,70 @@ const CurrentWeather = (props) => {
     } else {
       setShowFavourite(false);
     }
-  }, [favourites]);
+  }, [favourites, props.cityKey]);
 
   useEffect(() => {
-    // axios
-    //   .get(
-    //     `https://dataservice.accuweather.com/currentconditions/v1/${props.cityKey}?apikey=sEvHurTb69R14XzxsOmHKkTLkMziVO3S`
-    //   )
-    //   .then(function (response) {
-    //     // handle success
-    //     setCityWeather(response.data[0]);
-    //     console.log(response.data[0]);
-    //   })
-    //   .catch(function (error) {
-    //     // handle error
-    //     console.log(error);
-    //   })
-    //   .then(function () {
-    //     // always executed
-    //   });
-    // getWeeklyForcast();
-    setCityWeather(fake[0]);
-  }, []);
-
-  const getWeeklyForcast = () => {
     axios
       .get(
-        `https://dataservice.accuweather.com/forecasts/v1/daily/5day/${props.cityKey}?apikey=sEvHurTb69R14XzxsOmHKkTLkMziVO3S&metric=${isMetric}`
+        `https://dataservice.accuweather.com/currentconditions/v1/${props.cityKey}?apikey=z8L1GEx871whuVrAK9FCvPIq0szzdUlW`
       )
       .then(function (response) {
-        // handle success
-        setWeeklyWeather(response.data);
-        console.log(response.data);
+        setCityWeather(response.data[0]);
+        setIsError(false);
       })
       .catch(function (error) {
-        // handle error
-        console.log(error);
-      })
-      .then(function () {
-        // always executed
+        setIsError(true);
       });
-  };
-
-  useEffect(() => {
-    // getWeeklyForcast();
-  }, [isMetric]);
+  }, [props.cityKey]);
 
   return (
     <>
-      {cityWeather != null ? (
-        <motion.div
-          className="weatherMain"
-          initial={{ y: "10vh", opacity: 0.4 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5, type: "tween" }}
-        >
-          <div className="details">
-            {" "}
-            <div className="favIcon">
-              {showFavourite ? (
-                <AiFillStar size={44} onClick={HandleClick} />
-              ) : (
-                <AiOutlineStar onClick={HandleClick} size={44} />
-              )}
-            </div>
-            <div className="cityDetails">
-              <div>
-                {props.cityName}, {props.countryName}
-              </div>
-              <div>
-                {isMetric
-                  ? cityWeather.Temperature.Metric.Value +
-                    "°" +
-                    cityWeather.Temperature.Metric.Unit.toLowerCase()
-                  : cityWeather.Temperature.Imperial.Value +
-                    "°" +
-                    cityWeather.Temperature.Imperial.Unit.toLowerCase()}
-              </div>
-              <div>{cityWeather?.WeatherText}</div>
-            </div>
-          </div>
-          <div className="newWeek">
-            <>
-              {weeklyWeather != null ? (
-                weeklyWeather.DailyForecasts.map((day) => {
-                  return (
-                    <NextWeek
-                      date={day.Date}
-                      temp={
-                        day.Temperature.Minimum.Value +
-                        "°" +
-                        day.Temperature.Minimum.Unit
-                      }
-                      forecast={day.Day.IconPhrase}
-                    ></NextWeek>
-                  );
-                })
-              ) : (
-                <div className="loading">Loading weekly forcast</div>
-              )}
-            </>
-          </div>
-          {/* <button
-            className="changeUnits"
-            onClick={() => setIsMetric(!isMetric)}
-          >
-            Change Units
-          </button> */}
-        </motion.div>
+      {isError ? (
+        <div className="error">An error has occured, please refresh</div>
       ) : (
-        <div>Loading Data</div>
+        <div>
+          {cityWeather != null ? (
+            <motion.div
+              className="weatherMain"
+              initial={{ y: "10vh", opacity: 0.4 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.5, type: "tween" }}
+            >
+              <div className="details">
+                {" "}
+                <div className="favIcon">
+                  {showFavourite ? (
+                    <AiFillStar size={48} onClick={HandleClick} />
+                  ) : (
+                    <AiOutlineStar onClick={HandleClick} size={44} />
+                  )}
+                </div>
+                <div className="cityDetails">
+                  <div>
+                    {props.cityName}, {props.countryName}
+                  </div>
+                  <div>
+                    {isMetric.value
+                      ? cityWeather.Temperature.Metric.Value +
+                        "°" +
+                        cityWeather.Temperature.Metric.Unit
+                      : cityWeather.Temperature.Imperial.Value +
+                        "°" +
+                        cityWeather.Temperature.Imperial.Unit}
+                  </div>
+                  <div>{cityWeather.WeatherText}</div>
+                </div>
+              </div>
+
+              <NextWeek cityKey={props.cityKey}></NextWeek>
+            </motion.div>
+          ) : (
+            <div>Loading Data</div>
+          )}
+        </div>
       )}
     </>
   );
 };
 
 export default CurrentWeather;
-
-const fake = [
-  {
-    LocalObservationDateTime: "2021-08-23T23:01:00+03:00",
-    EpochTime: 1629748860,
-    WeatherText: "Mostly Sunny",
-    WeatherIcon: 33,
-    HasPrecipitation: false,
-    PrecipitationType: null,
-    IsDayTime: false,
-    Temperature: {
-      Metric: {
-        Value: 31.5,
-        Unit: "C",
-        UnitType: 17,
-      },
-      Imperial: {
-        Value: 87.0,
-        Unit: "F",
-        UnitType: 18,
-      },
-    },
-    MobileLink:
-      "http://www.accuweather.com/en/il/jerusalem/213225/current-weather/213225?lang=en-us",
-    Link: "http://www.accuweather.com/en/il/jerusalem/213225/current-weather/213225?lang=en-us",
-  },
-];
