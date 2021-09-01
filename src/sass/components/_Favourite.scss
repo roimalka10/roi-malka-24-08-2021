@@ -21,6 +21,12 @@
   background-color: #2b7abb;
   border: 1px solid #1f5988;
   z-index: 5;
+  
+  @media screen and (max-width: 499px) {
+    margin: 0px 20px;
+    width: 300px;
+    height: 215px;
+  }
 
   .favouriteIcon {
     margin-top: 15px;
