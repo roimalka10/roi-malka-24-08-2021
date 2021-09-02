@@ -24,7 +24,7 @@ const NextWeek = (props) => {
   const getWeeklyForcast = () => {
     axios
       .get(
-        `https://dataservice.accuweather.com/forecasts/v1/daily/5day/${props.cityKey}?apikey=z8L1GEx871whuVrAK9FCvPIq0szzdUlW&metric=${isMetric.value}`
+        `https://dataservice.accuweather.com/forecasts/v1/daily/5day/${props.cityKey}?apikey=sEvHurTb69R14XzxsOmHKkTLkMziVO3S&metric=${isMetric.value}`
       )
       .then(function (response) {
         // handle success
